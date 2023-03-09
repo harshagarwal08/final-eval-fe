@@ -4,16 +4,24 @@
     width: 100%;
     height: 100vh;
 }
-.hero-image{
+.image-section {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    padding-top: 10vh;
+    background: rgb(236, 234, 250);
     width: 60%;
-    height: 100vh;
-    background-color: #eaeaf2;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  }
+  
+.image-section p {
+    font-size: 2.0rem;
+    font-weight: 700;
+    color: rgb(67, 67, 67);
+    margin-left: 60px;
+  }
+  
+.image-section img {
+    width: 60%;
+    align-self: center;
 }
 .register-screen{
     background-color: rgb(49, 44, 44);

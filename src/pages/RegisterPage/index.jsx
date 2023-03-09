@@ -21,7 +21,9 @@ export default function Register() {
   };
   return (
     <div className="register-container">
-      <div className="hero-image">
+      <div className="image-section">
+        <p>Design APIs fast,</p>
+        <p>Manage content easily</p>
         <img src={heroImage} alt="" />
       </div>
       <div className="register-screen">

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { makeAuthRequest } from '../../utils/makeRequest';
 import { LOGIN_URL } from '../../constants/apiEndPoints';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../RegisterPage/RegisterPage.css';
 import heroImage from '../../assets/hero-image.png';
 
 export default function Login() {
   const navigate = useNavigate();
   useEffect(() => {
-    if(localStorage.getItem('token') !== null) navigate('/');
+    if (localStorage.getItem('token') !== null) navigate('/');
   }, []);
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = async () => {
@@ -25,7 +25,9 @@ export default function Login() {
   };
   return (
     <div className="register-container">
-      <div className="hero-image">
+      <div className="image-section">
+        <p>Design APIs fast,</p>
+        <p>Manage content easily</p>
         <img src={heroImage} alt="" />
       </div>
       <div className="register-screen">
@@ -46,13 +48,17 @@ export default function Login() {
           <button className="register-button" onClick={handleLogin}>
             Login
           </button>
-          <p style={{
-            textAlign: 'center',
-            marginTop: '10px',
-            color: 'grey',
-            textDecoration: 'underline',
-            fontSize: '14px',
-          }}>Forgot Password?</p>
+          <p
+            style={{
+              textAlign: 'center',
+              marginTop: '10px',
+              color: 'grey',
+              textDecoration: 'underline',
+              fontSize: '14px',
+            }}
+          >
+            Forgot Password?
+          </p>
         </div>
       </div>
     </div>
