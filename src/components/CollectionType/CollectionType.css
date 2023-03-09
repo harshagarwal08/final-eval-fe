@@ -1,0 +1,32 @@
+.collection-type-container{
+    height: 100vh;
+    background: rgb(235, 238, 253);
+    display: flex;
+    flex-direction: column;
+}
+.collection-type-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+}
+.entries-number{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.add-entry{
+    background: none;
+    border: none;
+    color: rgb(45,34,199);
+}
+.table-heading{
+    border-radius: 5px 5px;
+    width: 90%;
+    display: flex;
+    align-self: center;
+    height: 20px;
+    font-weight: 600;
+    align-items: center;
+    margin-top: 10px;
+    color: grey;
+    font-size: 0.8rem;
+}

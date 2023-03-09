@@ -1,0 +1,38 @@
+.entry-container{
+    border-radius: 5px 5px;
+    width: 90%;
+    display: flex;
+    align-self: center;
+    height: 40px;
+    font-weight: 600;
+    align-items: center;
+    background-color: white;
+    margin-top: 10px;
+}
+.id-entry{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 5px 0 0 5px;
+    width: 8%;
+}
+.name-entry{
+     width: 30%;
+     margin-left: 10px;
+     font-weight: 500;
+     font-size: 0.9rem;
+}
+.entry{
+    width: 25%;
+    color: grey;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.entry-options{
+    color: grey;
+    width: 12%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

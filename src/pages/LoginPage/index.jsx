@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeAuthRequest } from '../../utils/makeRequest';
 import { LOGIN_URL } from '../../constants/apiEndPoints';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import '../RegisterPage/RegisterPage.css';
 import heroImage from '../../assets/hero-image.png';
 
 export default function Login() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(localStorage.getItem('token') !== null) navigate('/');
+  }, []);
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
   const handleLogin = async () => {
     const response = await makeAuthRequest(LOGIN_URL, navigate, {
       data: {
@@ -17,7 +21,7 @@ export default function Login() {
       },
     });
     localStorage.setItem('token', response.data.token);
-    navigate('/builder');
+    navigate('/');
   };
   return (
     <div className="register-container">

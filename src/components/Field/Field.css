@@ -1,0 +1,40 @@
+.field-container{
+    border-radius: 5px 5px;
+    width: 90%;
+    display: flex;
+    align-self: center;
+    height: 40px;
+    font-weight: 600;
+    align-items: center;
+    background-color: white;
+    margin-top: 10px;
+}
+.type-notation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(122, 147, 247);
+    height: 100%;
+    border-radius: 5px 0 0 5px;
+    width: 8%;
+    color: white;
+}
+.field-name{
+     width: 30%;
+     margin-left: 10px;
+     font-weight: 500;
+     font-size: 0.9rem;
+}
+.field-type{
+    width: 50%;
+    color: grey;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.field-options{
+    color: grey;
+    width: 12%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

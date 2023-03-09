@@ -1,0 +1,14 @@
+.content-type-button{
+    background-color: rgb(79, 33, 198);
+    border-radius: 5px 5px;
+    width: 80%;
+    align-self: center;
+    height: 40px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+    align-items: center;
+    font-size: 0.8rem;
+}
