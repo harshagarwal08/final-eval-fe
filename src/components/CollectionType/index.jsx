@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Entry from '../Entry';
+import SideModal from '../SideModal';
 import './CollectionType.css';
 
 export default function CollectionType() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="collection-type-container">
       <div className="collection-type-header">
         <div className="entries-number">13 Entries Found</div>
-        <button className="add-entry">Add a new entry</button>
+        <button className="add-entry" onClick={() => setIsOpen(true)}>
+          Add a new entry
+        </button>
       </div>
       <div className="table-heading">
         <div className="id-entry">ID</div>
@@ -19,6 +23,7 @@ export default function CollectionType() {
       <Entry />
       <Entry />
       <Entry />
+      {isOpen && <SideModal setIsOpen={setIsOpen} />}
     </div>
   );
 }
