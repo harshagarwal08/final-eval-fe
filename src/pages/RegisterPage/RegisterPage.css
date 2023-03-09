@@ -1,0 +1,75 @@
+.register-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+.hero-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100vh;
+    background-color: #eaeaf2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.register-screen{
+    background-color: rgb(49, 44, 44);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100vh;
+}
+.register-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.screen-heading{
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+input{
+    width: 250px;
+    height: 25px;
+    border-radius: 5px 5px;
+    outline: none;
+    border: none;
+    padding: 5px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+    width: 250px;
+}
+.register-button{
+    width: 250px;
+    margin-top: 20px;
+    height: 35px;
+    border-radius: 5px 5px;
+    outline: none;
+    border: none;
+    background: rgb(117,73,184);
+    background: linear-gradient(90deg, rgba(117,73,184,1) 60%, rgba(115,0,199,1) 100%);
+    color: white;
+
+}
+.label{
+    color: grey;
+    align-self: start;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
