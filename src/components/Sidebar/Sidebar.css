@@ -33,6 +33,7 @@
     padding: 6px;
     font-weight: 600;
     margin-top: 15px;
+    text-decoration: none;
 }
 .active{
     background-color: #000;

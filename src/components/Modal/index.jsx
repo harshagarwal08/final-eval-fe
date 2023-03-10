@@ -2,9 +2,19 @@ import React, { useState } from 'react';
 import './Modal.css';
 import PropTypes from 'prop-types';
 
-export default function Modal({ setIsOpen, modalOptions, setModalOptions }) {
-  const [inputHeading, setInputHeading] = useState('');
+export default function Modal({
+  setIsOpen,
+  modalOptions,
+  setModalOptions,
+  addContentTypesHandler,
+  addFieldHandler,
+  updateContentTypeNameHandler,
+}) {
+  const [inputHeading, setInputHeading] = useState(
+    modalOptions.inputData ? modalOptions.inputData : ''
+  );
   const [typeHeading, setTypeHeading] = useState('');
+
   return (
     <>
       <div className="dark-bg" onClick={() => setIsOpen(false)} />
@@ -16,11 +26,21 @@ export default function Modal({ setIsOpen, modalOptions, setModalOptions }) {
             <h5 className="heading">{modalOptions.heading}</h5>
           </div>
           <div className="modal-content">{modalOptions.inputHeading}</div>
-          <input type="text" className="modal-input" value={inputHeading} onChange={(e)=>setInputHeading(e.target.value)}/>
+          <input
+            type="text"
+            className="modal-input"
+            value={inputHeading}
+            onChange={(e) => setInputHeading(e.target.value)}
+          />
           {modalOptions.typeHeading && (
             <>
               <div className="modal-content">{modalOptions.typeHeading}</div>
-              <input type="text" className="modal-input" value={typeHeading} onChange={(e)=>setTypeHeading(e.target.value)}/>
+              <input
+                type="text"
+                className="modal-input"
+                value={typeHeading}
+                onChange={(e) => setTypeHeading(e.target.value)}
+              />
             </>
           )}
           <div className="modal-actions">
@@ -36,10 +56,21 @@ export default function Modal({ setIsOpen, modalOptions, setModalOptions }) {
               </button>
               <button
                 className="create-btn"
-                onClick={() => {
-                  setIsOpen(false);
-                  setModalOptions({});
-                }}
+                onClick={
+                  !typeHeading
+                    ? () => {
+                      modalOptions.inputData
+                        ? updateContentTypeNameHandler(inputHeading)
+                        : addContentTypesHandler(inputHeading);
+                      setIsOpen(false);
+                      setModalOptions({});
+                    }
+                    : () => {
+                      addFieldHandler(inputHeading, typeHeading);
+                      setIsOpen(false);
+                      setModalOptions({});
+                    }
+                }
               >
                 Create
               </button>
@@ -57,6 +88,10 @@ Modal.propTypes = {
     heading: PropTypes.string.isRequired,
     inputHeading: PropTypes.string.isRequired,
     typeHeading: PropTypes.string,
+    inputData: PropTypes.string,
   }).isRequired,
   setModalOptions: PropTypes.func.isRequired,
+  addContentTypesHandler: PropTypes.func.isRequired,
+  addFieldHandler: PropTypes.func.isRequired,
+  updateContentTypeNameHandler: PropTypes.func.isRequired,
 };
