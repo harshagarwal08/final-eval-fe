@@ -24,7 +24,7 @@ export default function Register() {
   return (
     <div className="register-container">
       <div className="image-section">
-        <p>Design APIs fast,</p>
+        <p data-testid='image-text'>Design APIs fast,</p>
         <p>Manage content easily</p>
         <img src={heroImage} alt="" />
       </div>
@@ -36,14 +36,16 @@ export default function Register() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            data-testid='email-input'
           />
           <p className="label">Password</p>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            data-testid='password-input'
           />
-          <button className="register-button" onClick={handleRegister}>
+          <button className="register-button" onClick={handleRegister} data-testid='register-button'>
             Register
           </button>
         </div>

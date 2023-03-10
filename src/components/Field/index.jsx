@@ -13,7 +13,7 @@ export default function Field({ name, type, deleteFieldHandler }) {
   };
   return (
     <div className="field-container">
-      <div className="type-notation">{typeNotation[type.toLowerCase()]}</div>
+      <div className="type-notation" data-testid='field-text'>{typeNotation[type?.toLowerCase()]}</div>
       <div className="field-name">{name}</div>
       <div className="field-type">{type}</div>
       <div className="field-options">

@@ -14,7 +14,7 @@ export default function Header({title}) {
     makeRequest(GET_COLLECTION_BY_ID_URL(collectionId), navigate).then((data) => setCollectionTitle(data.name));
   });
   }
-  return <div className="header">{collectionId? collectionTitle: title}</div>;
+  return <div className="header" data-testid="title">{collectionId? collectionTitle: title}</div>;
 }
 
 Header.propTypes = {

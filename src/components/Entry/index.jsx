@@ -16,14 +16,14 @@ export default function Entry({
   const [update, setUpdate] = useState(false);
   const [content] = useState(entry?.content_type_entries);
   const displayContent = {};
-  fieldsList.forEach((field) => {
+  fieldsList?.forEach((field) => {
     displayContent[field] = content[field];
   });
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="entry-container">
-      <div className="id-entry">{index + 1}</div>
+      <div className="id-entry" data-testid="entry-id">{index + 1}</div>
       {Object.keys(displayContent).map((key) => {
         return (
           <div className="entry" key={key}>
