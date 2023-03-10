@@ -2,16 +2,14 @@ import axios from 'axios';
 import { BACKEND_URL, AUTH_URL} from '../../constants/apiEndPoints';
 import { ERROR_ROUTE } from '../../constants/routes';
 
-const makeRequest = async (apiEndPoint, navigate, dynamicConfig = {}, token) => {
+
+const makeRequest = async (apiEndPoint, navigate, dynamicConfig = {}) => {
   try {
     const requestDetails = {
       baseURL: BACKEND_URL,
       url: apiEndPoint.url,
       method: apiEndPoint.method,
       ...dynamicConfig,
-      headers: {
-        authorization: `Bearer ${token}`
-      }
     };
     const { data } = await axios(requestDetails);
     return data;

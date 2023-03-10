@@ -28,14 +28,16 @@ export default function Builder() {
     if (localStorage.getItem('token') === null) navigate('/login');
     makeRequest(GET_CONTENT_TYPES_URL, navigate).then((res) => {
       setContentTypes(res);
-      setSelectedContentType(res[0]);
+      if(res){
+        setSelectedContentType(res[0]);
+      }
     });
   }, []);
 
   useEffect(() => {
     const fields = [];
-    for (const field in selectedContentType.fields) {
-      fields.push([field, selectedContentType.fields[field]]);
+    for (const field in selectedContentType?.fields) {
+      fields.push([field, selectedContentType?.fields[field]]);
     }
     setFieldList(fields);
   }, [selectedContentType]);
@@ -51,7 +53,7 @@ export default function Builder() {
   };
 
   const addFieldHandler = (name, type) => {
-    makeRequest(ADD_FIELD_URL(selectedContentType.id), navigate, {
+    makeRequest(ADD_FIELD_URL(selectedContentType?.id), navigate, {
       data: {
         name,
         type,
@@ -64,7 +66,7 @@ export default function Builder() {
   };
 
   const deleteFieldHandler = (name) => {
-    makeRequest(DELETE_FIELD_URL(selectedContentType.id), navigate, {
+    makeRequest(DELETE_FIELD_URL(selectedContentType?.id), navigate, {
       data: {
         name,
       },
@@ -76,7 +78,7 @@ export default function Builder() {
   };
   const updateContentTypeNameHandler = (name) => {
     makeRequest(
-      UPDATE_CONTENT_TYPE_NAME_URL(selectedContentType.id),
+      UPDATE_CONTENT_TYPE_NAME_URL(selectedContentType?.id),
       navigate,
       {
         data: {
@@ -112,7 +114,7 @@ export default function Builder() {
   const showEditContentTypeNameModal = () => {
     modalOptions.heading = 'Edit Content Type Name';
     modalOptions.inputHeading = 'Name of the content type';
-    modalOptions.inputData = selectedContentType.name;
+    modalOptions.inputData = selectedContentType?.name;
     setModalOptions(modalOptions);
     setIsOpen(true);
   };
@@ -126,40 +128,44 @@ export default function Builder() {
         <button className="add-new" onClick={showAddNewContentModal}>
           + New Type
         </button>
-        {contentTypes.map((contentType) => (
+        {contentTypes?.map((contentType) => (
           <ContentType
             contentType={contentType}
             key={contentType.id}
             selectedContentTypeHandler={selectedContentTypeHandler}
-            isActive={selectedContentType.id === contentType.id}
+            isActive={selectedContentType?.id === contentType.id}
           />
         ))}
       </div>
       <div className="content-type-field-container">
-        <div className="content-type-name-header">
-          <p
-            style={{
-              fontSize: '1.2rem',
-              fontWeight: '600',
-              color: 'rgb(79, 79, 79)',
-            }}
-          >
-            {selectedContentType.name}
-          </p>
-          <FiEdit2 size={12} onClick={showEditContentTypeNameModal} />
-        </div>
-        <p style={{ fontSize: '0.9rem', color: 'rgb(79, 79, 79)' }}>
-          {selectedContentType.fields && fieldList.length} Fields
-        </p>
+        {selectedContentType && (
+          <>
+            <div className="content-type-name-header">
+              <p
+                style={{
+                  fontSize: '1.2rem',
+                  fontWeight: '600',
+                  color: 'rgb(79, 79, 79)',
+                }}
+              >
+                {selectedContentType?.name}
+              </p>
+              <FiEdit2 size={12} onClick={showEditContentTypeNameModal} />
+            </div>
+            <p style={{ fontSize: '0.9rem', color: 'rgb(79, 79, 79)' }}>
+              {selectedContentType?.fields && fieldList.length} Fields
+            </p>
+          </>
+        )}
         <div className="content-type-field">
           <button
             className="add-new"
             style={{ width: '90%' }}
             onClick={showAddNewFieldModal}
           >
-            Add another field
+            Add a new field
           </button>
-          {selectedContentType.fields &&
+          {selectedContentType?.fields &&
             fieldList.map((field) => {
               return (
                 <Field

@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
-import './HomePage.css';
-import Builder from '../../components/Builder';
-// import CollectionType from '../../components/CollectionType';
-import { useNavigate } from 'react-router-dom';
+import CollectionType from '../../components/CollectionType';
+import '../HomePage/HomePage.css';
 
-export default function HomePage() {
+export default function EntriesPage() {
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem('token')) {
@@ -15,10 +14,10 @@ export default function HomePage() {
   }, []);
   return (
     <div className="homepage-container">
-      <Sidebar/>
+      <Sidebar />
       <div className="right-side-container">
-        <Header title="Content Types"/>
-        <Builder/>
+        <Header />
+        <CollectionType/>
       </div>
     </div>
   );

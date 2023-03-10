@@ -35,10 +35,6 @@
     margin-top: 15px;
     text-decoration: none;
 }
-.active{
-    background-color: #000;
-    color: white;
-}
 .collection-list{
     color: grey;
 }
@@ -48,4 +44,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.link-item{
+    color: whitesmoke;
+    text-decoration: none;
+}
+.link-active{
+    background-color: #000 !important;
+    color: white;
 }
