@@ -46,7 +46,7 @@ export default function CollectionType() {
 
   const handleDeleteEntry = async(entryId) => {
     await makeRequest(DELETE_ENTRY_URL(collectionId, entryId), navigate);
-    const newEntries = entries.filter((entry) => entry.id !== entryId);
+    const newEntries = entries?.filter((entry) => entry.id !== entryId);
     setEntries(newEntries);
   };
 
@@ -54,7 +54,7 @@ export default function CollectionType() {
   return (
     <div className="collection-type-container">
       <div className="collection-type-header">
-        <div className="entries-number">{entries.length} Entries Found</div>
+        <div className="entries-number">{entries?.length} Entries Found</div>
         <button className="add-entry" onClick={() => setIsOpen(true)}>
           Add a new entry
         </button>
@@ -70,7 +70,7 @@ export default function CollectionType() {
         })}
         <div className="entry-options">Actions</div>
       </div>
-      {entries?.map((entry, index) => {
+      {entries && entries.map((entry, index) => {
         return <Entry key={entry.id} index={index} entry={entry} fieldsList={fieldsList} handleDeleteEntry={handleDeleteEntry}/>;
       })}
       {isOpen && (

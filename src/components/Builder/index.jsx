@@ -28,6 +28,7 @@ export default function Builder() {
     if (localStorage.getItem('token') === null) navigate('/login');
     makeRequest(GET_CONTENT_TYPES_URL, navigate).then((res) => {
       setContentTypes(res);
+      console.log(res);
       if(res){
         setSelectedContentType(res[0]);
       }
