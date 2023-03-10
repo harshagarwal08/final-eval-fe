@@ -6,18 +6,24 @@ import SideModal from '../SideModal';
 import './Entry.css';
 import PropTypes from 'prop-types';
 
-
-export default function Entry({ index, entry, fieldsList, handleDeleteEntry, handleUpdateEntry }) {
+export default function Entry({
+  index,
+  entry,
+  fieldsList,
+  handleDeleteEntry,
+  handleUpdateEntry,
+}) {
+  const [update, setUpdate] = useState(false);
   const [content] = useState(entry?.content_type_entries);
   const displayContent = {};
   fieldsList.forEach((field) => {
     displayContent[field] = content[field];
   });
   const [isOpen, setIsOpen] = useState(false);
-  
+
   return (
     <div className="entry-container">
-      <div className="id-entry">{index+1}</div>
+      <div className="id-entry">{index + 1}</div>
       {Object.keys(displayContent).map((key) => {
         return (
           <div className="entry" key={key}>
@@ -27,10 +33,24 @@ export default function Entry({ index, entry, fieldsList, handleDeleteEntry, han
       })}
       <div className="entry-options">
         <MdContentCopy />
-        <FaRegEdit onClick={() => setIsOpen(true)} />
-        <RiDeleteBin6Line onClick={() => handleDeleteEntry(entry.id)}/>
+        <FaRegEdit
+          onClick={() => {
+            setIsOpen(true);
+            setUpdate(true);
+          }}
+        />
+        <RiDeleteBin6Line onClick={() => handleDeleteEntry(entry.id)} />
       </div>
-      {isOpen && <SideModal setIsOpen={setIsOpen} fieldsList = {Object.keys(content)} handleFormSubmit={handleUpdateEntry}/>}
+      {isOpen && (
+        <SideModal
+          setIsOpen={setIsOpen}
+          fieldsList={Object.keys(content)}
+          handleUpdateEntry={handleUpdateEntry}
+          entryId = {entry.id}
+          content={content}
+          update={update}
+        />
+      )}
     </div>
   );
 }

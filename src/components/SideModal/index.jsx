@@ -2,8 +2,21 @@ import React from 'react';
 import './SideModal.css';
 import PropTypes from 'prop-types';
 
-export default function SideModal({ setIsOpen, fieldsList, handleFormSubmit }) {
+export default function SideModal({
+  setIsOpen,
+  fieldsList,
+  handleFormSubmit,
+  handleUpdateEntry,
+  update,
+  content,
+  entryId
+}) {
   const newContentEntry = {};
+  if(update) {
+    fieldsList.forEach((field) => {
+      newContentEntry[field] = content[field];
+    });
+  }
   const handleInputChange = (field, value) => {
     newContentEntry[field] = value;
   };
@@ -13,7 +26,7 @@ export default function SideModal({ setIsOpen, fieldsList, handleFormSubmit }) {
       <div className="right">
         <div className="side-modal">
           <div className="modal-header">
-            <h5 className="heading"></h5>
+            <h5 className="heading">{fieldsList.length===0? 'No fields available' :'Add a new entry'}</h5>
           </div>
           {fieldsList?.map((field) => {
             return (
@@ -21,7 +34,12 @@ export default function SideModal({ setIsOpen, fieldsList, handleFormSubmit }) {
                 <div className="modal-content" key={field}>
                   {field}
                 </div>
-                <input type="text" className="modal-input" onChange={(e)=>handleInputChange(field, e.target.value)}/>
+                <input
+                  type="text"
+                  className="modal-input"
+                  defaultValue={newContentEntry[field]}
+                  onChange={(e) => handleInputChange(field, e.target.value)}
+                />
               </>
             );
           })}
@@ -33,11 +51,13 @@ export default function SideModal({ setIsOpen, fieldsList, handleFormSubmit }) {
               <button
                 className="create-btn"
                 onClick={() => {
-                  handleFormSubmit(newContentEntry);
+                  update
+                    ? handleUpdateEntry(entryId, newContentEntry)
+                    : handleFormSubmit(newContentEntry);
                   setIsOpen(false);
                 }}
               >
-                Add
+                {update ? 'Update' : 'Add'}
               </button>
             </div>
           </div>
@@ -52,4 +72,8 @@ SideModal.propTypes = {
   fieldsList: PropTypes.array.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
   heading: PropTypes.string.isRequired,
+  content: PropTypes.object.isRequired,
+  handleUpdateEntry: PropTypes.func.isRequired,
+  update: PropTypes.bool.isRequired,
+  entryId: PropTypes.number.isRequired
 };

@@ -8,6 +8,7 @@ import { makeRequest } from '../../utils/makeRequest';
 import {
   CREATE_ENTRY_URL,
   DELETE_ENTRY_URL,
+  UPDATE_ENTRY_URL,
   GET_ALL_ENTRIES_BY_COLLECTION_URL,
   GET_COLLECTION_BY_ID_URL,
   GET_CONTENT_TYPE_BY_ID_URL,
@@ -50,6 +51,21 @@ export default function CollectionType() {
     setEntries(newEntries);
   };
 
+  const handleUpdateEntry = async (entryId, newContentEntry) => {
+    const response = await makeRequest(UPDATE_ENTRY_URL(collectionId, entryId), navigate, {
+      data: {
+        content_type_entries: newContentEntry,
+      },
+    });
+    const newEntries = entries?.map((entry) => {
+      if (entry.id === entryId) {
+        return response;
+      }
+      return entry;
+    });
+    setEntries(newEntries);
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="collection-type-container">
@@ -71,7 +87,7 @@ export default function CollectionType() {
         <div className="entry-options">Actions</div>
       </div>
       {entries && entries.map((entry, index) => {
-        return <Entry key={entry.id} index={index} entry={entry} fieldsList={fieldsList} handleDeleteEntry={handleDeleteEntry}/>;
+        return <Entry key={entry.id} index={index} entry={entry} fieldsList={fieldsList} handleDeleteEntry={handleDeleteEntry} handleUpdateEntry={handleUpdateEntry}/>;
       })}
       {isOpen && (
         <SideModal
